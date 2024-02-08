@@ -1,0 +1,247 @@
+<html>
+    <head>
+        <title>Monopoly</title>
+        <script src='gameloop.js'></script>
+        <script src='index.js'></script>
+        <script src='linkedlist.js'></script>
+        <script src='gamesettings.js'></script>
+        <script src='players.js'></script>
+        
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div id='start-screen' class='screen' style='display:block'>
+            <button id="startButton" class="startButtons" onclick='startGame()'>Start Game</button>
+            <button id ="settingsButton" class="startButtons" onclick='settings()'>Settings</button>
+        </div>
+        <div id='settings-screen' class='screen' style='display:none'>
+            <div class="form" id="form2">
+                <form name="myForm3" action="" onsubmit="" method="post" id="form">
+                    <div id="settingsbox">Game settings</div>
+                        <input type="text" name="fwinscore" placeholder="Winner score">
+                        <select id="fplayers">
+                            <option value="sel-players" selected>Players</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                </form>
+                <button id="saveSettings" class="startButtons" onclick='save()'>Save</button>
+            </div>
+
+        <div class="form" id="form1">
+            <form name="myForm" action="" onsubmit="" method="post" id="form">
+                    <div id="settingsbox">Add</div>
+                    <input type="text" name="fname" placeholder="Name">
+                    <select id="fstate">
+                        <option value="state-type" selected>State</option>
+                        <option value="Add">Add</option>
+                        <option value="Remove">Remove</option>
+                        <option value="Skip">Skip</option>
+                        <option value="Move">Move</option>
+                    </select>
+                    <input type="text" name="fvalue" placeholder="Value">
+                    <input type="text" name="fpos" placeholder="Position (optional)">
+            </form>
+            <button id="saveButton" class="startButtons" onclick='add()'>Add</button>
+        </div>
+        <div class="form" id="form3">
+            <form name="myForm2" action="" onsubmit="" method="post" id="form">
+                    <div id="settingsbox">Remove</div>
+                    <input type="text" name="fname" placeholder="Name">
+                    <div id="or">or</div>
+                    <input type="text" name="fpos" placeholder="Position">
+            </form>
+            <button id="saveButton" class="startButtons" onclick='remove()'>Remove</button>
+        </div>
+        <div class="form">
+            <div id="presets">Presets</div>
+            <button id="preset1" class="startButtons" onclick='preset1()'>1</button>
+            <div id="csv">
+            
+              <button id="csvbutton" class="startButtons" onclick='csvform()'>Submit</button>
+            </div>
+        </div>
+        <button id="loadButton" class="startButtons" onclick='deleteall()'>Delete</button>
+        <button id="backButton" class="startButtons" onclick='back()'>Back</button>
+    </div>
+
+
+        <div id="game-board" style='display:none'>
+            <div id="main">
+                <ul>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name1">-</div>
+                            <div class="plrbox" id="plrbox1">
+                                <span class="dot" id="player1"></span>
+                                <span class="dot" id="player2"></span>
+                                <span class="dot" id="player3"></span>
+                            </div>																	
+                            <div class="price" id="price1">$</div>
+                        </div>
+                    </span></li>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name2">-</div>
+                            <div class="plrbox" id="plrbox2">
+
+
+                            </div>																						
+                            <div class="price" id="price2">$</div>
+                        </div>
+                    </span></li>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name3">-</div>	
+                            <div class="plrbox" id="plrbox3">
+
+                            </div>																					
+                            <div class="price" id="price3">$</div>
+                        </div>
+                    </span></li>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name4">-</div>
+                            <div class="plrbox" id="plrbox4">
+
+                            </div>																						
+                            <div class="price" id="price4">$</div>
+                        </div>
+                    </span></li>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name5">-</div>
+                            <div class="plrbox" id="plrbox5">
+                                
+                            </div>
+                            <div class="price" id="price5">$</div>
+                        </div>
+                    </span></li>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name6">-</div>
+                            <div class="plrbox" id="plrbox6">
+
+                            </div>
+
+                            <div class="price" id="price6">$</div>
+                        </div>
+                    </span></li>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name7">-</div>
+                            <div class="plrbox" id="plrbox7">
+
+                            </div>																						
+                            <div class="price" id="price7">$</div>
+                        </div>
+                    </span></li>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name8">-</div>
+                            <div class="plrbox" id="plrbox8">
+                                
+                            </div>																						
+                            <div class="price" id="price8">$</div>
+                        </div>
+                    </span></li>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name9">-</div>
+                            <div class="plrbox" id="plrbox9">
+                                
+                            </div>																						
+                            <div class="price" id="price9">$</div>
+                        </div>
+                    </span></li>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name10">-</div>
+                            <div class="plrbox" id="plrbox10">
+                                
+                            </div>																						
+                            <div class="price" id="price10">$</div>
+                        </div>
+                    </span></li>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name11">-</div>
+                            <div class="plrbox" id="plrbox11">
+                                
+                            </div>																						
+                            <div class="price" id="price11">$</div>
+                        </div>
+                    </span></li>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name12">-</div>
+                            <div class="plrbox" id="plrbox12">
+                                
+                            </div>																						
+                            <div class="price" id="price12">$</div>
+                        </div>
+                    </span></li>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name13">-</div>
+                            <div class="plrbox" id="plrbox13">
+                                
+                            </div>																						
+                            <div class="price" id="price13">$</div>
+                        </div>
+                    </span></li>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name14">-</div>
+                            <div class="plrbox" id="plrbox14">
+                                
+                            </div>																						
+                            <div class="price" id="price14">$</div>
+                        </div>
+                    </span></li>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name15">-</div>
+                            <div class="plrbox" id="plrbox15">
+                                
+                            </div>																						
+                            <div class="price" id="price15">$</div>
+                        </div>
+                    </span></li>
+                    <li><span>
+                        <div class="container">
+                            <div class="name" id="name16">-</div>
+                            <div class="plrbox" id="plrbox16">
+                                
+                            </div>																						
+                            <div class="price" id="price16">$</div>
+                        </div>
+                    </span></li>
+                  </ul>
+                  
+            </div>
+
+        </div>
+        <div id="gameplay-screen" style='display:none'>
+            <button id="backButton" class="startButtons" onclick='quitgame()'>Quit</button>
+            <button id="rollButton" class="startButtons" onclick='roll()'>Roll</button>
+            <div class="scoreboard" id="scoreboards">
+                <span class="" id="playerscore1">$200</span>
+                <span class="" id="playerscore2">$200</span>
+                <span class="" id="playerscore3">$200</span>
+            </div>	
+
+
+
+
+
+        </div>
+            
+            
+        
+    
+
+        
+    </body>
+</html>
